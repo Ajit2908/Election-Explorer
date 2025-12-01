@@ -1,0 +1,4 @@
+A simple and interactive web app to explore Lok Sabha election results from 1952 to 2024. This tool is designed to make election data easy to understand for everyone — whether you're a student, researcher, journalist, or just someone curious about India’s political history.
+With this application, users can quickly search constituency-wise results, discover how different parties performed in each election year, and explore long-term political trends in a clear and visual way.
+It also includes powerful tools to track a party’s performance across decades and compare multiple political parties side-by-side, making it easier to analyze shifts in vote share, dominance, and electoral patterns over time.
+The goal of this project is to bring scattered election data into one clean, simple, and user-friendly interface so that anyone can explore India’s electoral journey with just a few clicks.
