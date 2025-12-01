@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Election Result</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #aaa;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #eee;
+        }
+        h1, h2, h3 {
+            margin-top: 20px;
+        }
+        .winner {
+            background-color: #d4edda;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Results for {{ constituency }} in {{ year }}</h1>
+
+    {% if winner %}
+        <h2>🏆 Winner</h2>
+        <p>{{ winner.get('candidate', 'Unknown') }} ({{ winner.get('party', 'Unknown') }}) - {{ '{:,}'.format(winner.get('votes', 0)) }} votes</p>
+    {% else %}
+        <p>No winner data found.</p>
+    {% endif %}
+
+    {% if runner_up %}
+        <h3>Runner-Up</h3>
+        <p>{{ runner_up.get('candidate', 'Unknown') }} ({{ runner_up.get('party', 'Unknown') }}) - {{ '{:,}'.format(runner_up.get('votes', 0)) }} votes</p>
+    {% endif %}
+
+    {% if df %}
+        <h2>📊 Full Result Table</h2>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Constituency</th>
+                <th>No</th>
+                <th>Type</th>
+                <th>State</th>
+                <th>Candidate</th>
+                <th>Party</th>
+                <th>Electors</th>
+                <th>Votes</th>
+                <th>Turnout</th>
+            </tr>
+            {% for row in df %}
+                <tr class="{% if winner and row['candidate'] == winner['candidate'] %}winner{% endif %}">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ row.get('constituency', '-') }}</td>
+                    <td>{{ row.get('no', '-') }}</td>
+                    <td>{{ row.get('type', '-') }}</td>
+                    <td>{{ row.get('state', '-') }}</td>
+                    <td>{{ row.get('candidate', '-') }}</td>
+                    <td>{{ row.get('party', '-') }}</td>
+                    <td>{{ row.get('electors', '-') }}</td>
+                    <td>{{ '{:,}'.format(row.get('votes', 0)) }}</td>
+                    <td>{{ row.get('turnout', '-') }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <a href="/">🔙 Back</a>
+</body>
+</html>

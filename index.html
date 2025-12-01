@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Election Explorer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Election Explorer</h1>
+
+    <h2>🔍 Who Won?</h2>
+    <form action="/result" method="post">
+        <label for="year">Year:</label>
+        <select name="year" required>
+            {% for y in years %}
+                <option value="{{ y }}">{{ y }}</option>
+            {% endfor %}
+        </select>
+        <label for="constituency">Constituency:</label>
+        <select name="constituency" required>
+            {% for c in constituencies %}
+                <option value="{{ c }}">{{ c }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Find Winner</button>
+    </form>
+
+    <h2>📈 Party Trends</h2>
+    <form action="/trends" method="post">
+        <label for="party">Party:</label>
+        <select name="party" required>
+            {% for p in parties %}
+                <option value="{{ p }}">{{ p }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Show Trend</button>
+    </form>
+</body>
+</html>
